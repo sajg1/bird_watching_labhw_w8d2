@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <sightings-form />
-    <sightings-grid :sightings="sightings" />
+    <sightings-grid  />
   </div>
 </template>
 
@@ -12,25 +12,25 @@ import { eventBus } from './main';
 
 export default {
   name: 'app',
-  data () {
-    return {
-      sightings: []
-    }
-  },
+  // data () {
+  //   return {
+  //     sightings: []
+  //   }
+  // },
   components: {
     'sightings-form': SightingsForm,
     'sightings-grid': SightingsGrid
   },
-  mounted(){
-    this.fetchData();
-  },
-  methods: {
-    fetchData(){
-      fetch("http://localhost:3000/api/sightings")
-        .then(res => res.json())
-        .then(sightings => this.sightings = sightings);
-    }
-  }
+  // mounted(){
+  //   this.fetchData();
+  // },
+  // methods: {
+  //   fetchData(){
+  //     fetch("http://localhost:3000/api/sightings")
+  //       .then(res => res.json())
+  //       .then(sightings => this.sightings = sightings);
+  //   }
+  // }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template lang="html">
 	<div id="sightingsGrid">
-		<div class="sighting" v-for="sighting in sightings">
+		<div class="sighting" v-for="(sighting, index) in sightings" :key="index" :sighting="sighting">
 			<h2>{{ sighting.species }}</h2>
 			<p>{{ sighting.location }} on {{ sighting.date|format }}</p>
 
@@ -10,14 +10,24 @@
 </template>
 
 <script>
-import { eventBus } from '../main';
+import { eventBus } from '../main.js';
+import SightingsService from '@/services/SightingsService.js';
 export default {
 	name: "sightings-grid",
-	props: ["sightings"],
+	// props: ["sightings"],
+	data(){
+		return{
+			sightings: []
+		}
+	},
 	filters: {
 		format(value){
 			return new Date(value).toLocaleString().substring(0, 10);
 		}
+	},
+	mounted(){
+		SightingsService.getSightings()
+		.then(sightings => this.sightings = sightings);
 	},
 	methods: {
 
