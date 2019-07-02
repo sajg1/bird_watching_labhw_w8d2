@@ -1,38 +1,38 @@
 <template lang="html">
 	<div id="sightingsGrid">
-		<div class="sighting" v-for="(sighting, index) in sightings" :key="index" :sighting="sighting">
-			<h2>{{ sighting.species }}</h2>
-			<p>{{ sighting.location }} on {{ sighting.date|format }}</p>
-
-			<button v-on:click="deleteSighting">Delete Sighting</button>
-		</div>
+		<sighting-card class="sighting" v-for="(sighting, index) in sightings" :key="index" :sighting="sighting" ></sighting-card>
 	</div>
 </template>
 
 <script>
 import { eventBus } from '../main.js';
 import SightingsService from '@/services/SightingsService.js';
+import SightingCard from './SightingCard.vue'
+
 export default {
 	name: "sightings-grid",
-
 	data(){
 		return{
 			sightings: []
 		}
 	},
-	filters: {
-		format(value){
-			return new Date(value).toLocaleString().substring(0, 10);
-		}
-	},
+
 	mounted(){
 		SightingsService.getSightings()
 		.then(sightings => this.sightings = sightings);
 
 		eventBus.$on('sighting-added', sighting => this.sightings.push(sighting))
+
+		eventBus.$on('delete-sighting', (id) => {
+			const index = this.sightings.findIndex(sighting => sighting._id === id)
+			this.sightings.splice(index, 1);
+		})
 	},
 	methods: {
 
+	},
+	components: {
+		'sighting-card':SightingCard
 	}
 }
 </script>
