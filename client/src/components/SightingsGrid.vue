@@ -14,7 +14,7 @@ import { eventBus } from '../main.js';
 import SightingsService from '@/services/SightingsService.js';
 export default {
 	name: "sightings-grid",
-	// props: ["sightings"],
+
 	data(){
 		return{
 			sightings: []

@@ -7,4 +7,13 @@ const baseURL = 'http://localhost:3000/api/sightings/'
       .then(res => res.json())
     },
 
+    postSighting(payload){
+      return fetch(baseURL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        header: { 'Content-type': 'application/json'}
+      })
+      .then( res => res.json());
+    }
+
   }

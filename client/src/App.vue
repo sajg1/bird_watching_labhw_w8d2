@@ -8,29 +8,14 @@
 <script>
 import SightingsForm from './components/SightingsForm';
 import SightingsGrid from './components/SightingsGrid';
-import { eventBus } from './main';
 
 export default {
   name: 'app',
-  // data () {
-  //   return {
-  //     sightings: []
-  //   }
-  // },
+
   components: {
     'sightings-form': SightingsForm,
     'sightings-grid': SightingsGrid
   },
-  // mounted(){
-  //   this.fetchData();
-  // },
-  // methods: {
-  //   fetchData(){
-  //     fetch("http://localhost:3000/api/sightings")
-  //       .then(res => res.json())
-  //       .then(sightings => this.sightings = sightings);
-  //   }
-  // }
 }
 </script>
 
