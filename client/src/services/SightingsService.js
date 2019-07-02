@@ -11,7 +11,7 @@ const baseURL = 'http://localhost:3000/api/sightings/'
       return fetch(baseURL, {
         method: 'POST',
         body: JSON.stringify(payload),
-        header: { 'Content-type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
       })
       .then( res => res.json());
     }

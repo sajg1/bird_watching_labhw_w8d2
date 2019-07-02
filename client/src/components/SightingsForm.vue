@@ -3,15 +3,15 @@
 		<h2>Add a Sighting</h2>
 		<div class="formWrap">
 			<label for="species">Species:</label>
-			<input type="text" id="species" />
+			<input type="text" id="species" v-model="species"/>
 		</div>
 		<div class="formWrap">
 			<label for="location">Location:</label>
-			<input type="text" id="location" />
+			<input type="text" id="location" v-model="location"/>
 		</div>
 		<div class="formWrap">
 			<label for="date">Date:</label>
-			<input type="date" id="date" />
+			<input type="date" id="date" v-model.date="date"/>
 		</div>
 
 		<input type="submit" value="Save" id="save"/>
@@ -20,6 +20,7 @@
 
 <script>
 import { eventBus } from '@/main.js'
+import SightingsService from '@/services/SightingsService.js'
 export default {
 	name: "sightings-form",
 	data(){
@@ -31,8 +32,7 @@ export default {
 	},
 	methods: {
 		addSighting(evt){
-			evt.preventDefault();
-
+			evt.preventDefault()
 			const sighting = {
 				species: this.species,
 				location: this.location,

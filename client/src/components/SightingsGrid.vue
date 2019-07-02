@@ -28,6 +28,8 @@ export default {
 	mounted(){
 		SightingsService.getSightings()
 		.then(sightings => this.sightings = sightings);
+
+		eventBus.$on('sighting-added', sighting => this.sightings.push(sighting))
 	},
 	methods: {
 
